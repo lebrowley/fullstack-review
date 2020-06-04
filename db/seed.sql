@@ -1,7 +1,7 @@
 CREATE TABLE users (
     user_id SERIAL PRIMARY KEY,
-    email VARCHAR(50),
-    password VARCHAR(50),  
+    email VARCHAR(250),
+    password VARCHAR(250)  
 );
 
 CREATE TABLE posts (
