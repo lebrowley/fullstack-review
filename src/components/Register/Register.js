@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import {connect} from 'react-redux';
+import {loginUser} from '../../redux/reducer';
 
 
-export default class Register extends Component {
+class Register extends Component {
     constructor() {
         super()
 
@@ -25,6 +27,7 @@ export default class Register extends Component {
 
         axios.post('/auth/register', { email, password })
             .then(res => {
+                this.props.loginUser(res.data)   //basically setting state, but the reduxState
                 this.props.history.push('/dashboard')
             })
             .catch(err => alert('Could not register'))
@@ -59,3 +62,8 @@ export default class Register extends Component {
         )
     }
 }
+
+const mapStateToProps = reduxState => reduxState
+const mapDispatchToProps = {loginUser} 
+export default connect(mapStateToProps, mapDispatchToProps)(Register);
+
